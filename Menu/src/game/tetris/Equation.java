@@ -1,4 +1,4 @@
-package game.tetris
+package game.tetris;
 
 public class Equation {
 	int firstValue;
@@ -41,5 +41,6 @@ public class Equation {
 		else
 			eq.concat("/");
 		eq.concat(Integer.toString(second));
+		return eq;
 	}
 }
