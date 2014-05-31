@@ -78,7 +78,8 @@ public class TetrisThread extends Thread {
 	private int mStartY;
 	private int mStopX;
 	private int mStopY;
-
+    // String builder
+	StringBuilder str = new StringBuilder();
 	private static int LEVEL_UP_LINES = 10;
 
 	// touch input variables and constant
@@ -886,10 +887,14 @@ public class TetrisThread extends Thread {
 				paintButton.setColor(Color.BLACK);
 				paintText.setColor(Color.YELLOW);
 				
+				
+
+				canvas.drawText(str.toString(), 134, 380, paintText);
+				
 				Rect button = new Rect(5, 395, 55, 430);
 				canvas.drawRect(button, paintButton);
 				canvas.drawText("0", 30, 420, paintText);
-
+				
 				button = new Rect(57, 395, 107, 430);
 				canvas.drawRect(button, paintButton);
 				canvas.drawText("1", 82, 420, paintText);
@@ -1078,6 +1083,22 @@ public class TetrisThread extends Thread {
 	 *            event
 	 * @return boolean
 	 */
+	Rect bnt0 = new Rect(5, 395, 55, 430);
+	Rect bnt1 = new Rect(57, 395, 107, 430);
+	Rect bnt2 = new Rect(109, 395, 159, 430);
+	Rect bnt3 = new Rect(161, 395, 211, 430);
+	Rect bnt4 = new Rect(213, 395, 263, 430);
+	Rect bnte = new Rect(265, 395, 315, 430);
+	Rect bnt5 = new Rect(5, 435, 55, 470);
+	Rect bnt6 = new Rect(57, 435, 107, 470);
+	Rect bnt7 = new Rect(109, 435, 159, 470);
+	Rect bnt8= new Rect(161, 435, 211, 470);
+	Rect bnt9 = new Rect(213, 435, 263, 470);
+	Rect bntc = new Rect(265, 435, 315, 470);
+	
+	
+	
+	
 	public boolean onTouchEvent(MotionEvent event) {
 		synchronized (mSurfaceHolder) {
 			int eventaction = event.getAction();
@@ -1089,6 +1110,41 @@ public class TetrisThread extends Thread {
 					mX = X;
 					mXDown = X;
 					mYDown = Y;
+					if(bnt0.contains(X, Y))
+						str.append("0");
+					if(bnt1.contains(X, Y))
+						str.append("1");
+						
+					if(bnt2.contains(X, Y))
+						str.append("2");
+					
+					if(bnt3.contains(X, Y))
+						str.append("3");
+					
+					if(bnt4.contains(X, Y))
+						str.append("4");
+					
+					if(bnte.contains(X, Y))
+						//Perform enter action
+						
+					if(bnt5.contains(X, Y))
+						str.append("5");
+					
+					if(bnt6.contains(X, Y))
+						str.append("6");
+					
+					if(bnt7.contains(X, Y))
+						str.append("7");
+					
+					if(bnt8.contains(X, Y))
+						str.append("8");
+					
+					if(bnt9.contains(X, Y))
+						str.append("9");
+					
+					if(bntc.contains(X, Y))
+						str.setLength(str.length()-1);
+					 
 					break;
 
 				case MotionEvent.ACTION_UP: // user actions
@@ -1096,7 +1152,7 @@ public class TetrisThread extends Thread {
 					if (mXDown < (mCanvasWidth / 2) - mBlockSize * 5) // coordinates
 																		// of
 																		// the
-																		// left
+						//Need to Display string											// left
 																		// of
 																		// the
 																		// board.
