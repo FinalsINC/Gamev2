@@ -58,5 +58,122 @@
         android:layout_y="297px"
         android:text="Level" >
     </TextView>
+    
+    <LinearLayout
+        android:id="@+id/delete_enter"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_centerHorizontal="true"
+        android:orientation="horizontal"
+        android:weightSum="5"
+        android:layout_y = "388dp" >
+
+        <ImageView
+            android:id="@+id/delete"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:src="@drawable/delete" 
+            android:clickable="true"/>
+
+        <TextView
+            android:id="@+id/between_delete_enter"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="3" 
+            android:clickable="true"/>
+
+        <ImageView
+            android:id="@+id/enter"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:src="@drawable/enter"
+            android:textSize="25sp" 
+            android:clickable="true"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/zero_to_four"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_below="@+id/delete_enter"
+        android:orientation="horizontal"
+        android:weightSum="5"
+        android:layout_y="420dp" >
+
+        <ImageView
+            android:id="@+id/btn0"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:src="@drawable/zero" 
+            android:clickable="true"/>
+
+        <ImageView
+            android:id="@+id/btn1"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:src="@drawable/one" 
+            android:clickable="true"/>
+
+        <ImageView
+            android:id="@+id/btn2"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:src="@drawable/two" 
+            android:clickable="true"/>
+
+        <ImageView
+            android:id="@+id/btn3"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:src="@drawable/three" 
+            android:clickable="true"/>
+
+        <ImageView
+            android:id="@+id/btn4"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:src="@drawable/four" 
+            android:clickable="true"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/five_to_nine"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_below="@+id/zero_to_four"
+        android:orientation="horizontal"
+        android:weightSum="5"
+        android:layout_y="452dp" >
+
+        <ImageView
+            android:id="@+id/btn5"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:src="@drawable/five" />
+
+        <ImageView
+            android:id="@+id/btn6"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:src="@drawable/six" />
+
+        <ImageView
+            android:id="@+id/btn7"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:src="@drawable/seven" />
+
+        <ImageView
+            android:id="@+id/btn8"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:src="@drawable/eight" />
+
+        <ImageView
+            android:id="@+id/btn9"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:src="@drawable/nine" />
+    </LinearLayout>
 
 </AbsoluteLayout>

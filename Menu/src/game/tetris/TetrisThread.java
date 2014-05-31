@@ -870,6 +870,59 @@ public class TetrisThread extends Thread {
 		 * canvas.drawText(Integer.toString(mHighScore),(mCanvasWidth
 		 * -mBlockSize*TetrisBoard.WIDTH)/4, pos[1]-4*mBlockSize, paintText);
 		 */
+		
+		//draw buttons
+				Paint paintButton = new Paint();
+				paintButton.setColor(Color.BLACK);
+				paintText.setColor(Color.YELLOW);
+				
+				Rect button = new Rect(5, 395, 55, 430);
+				canvas.drawRect(button, paintButton);
+				canvas.drawText("0", 30, 420, paintText);
+
+				button = new Rect(57, 395, 107, 430);
+				canvas.drawRect(button, paintButton);
+				canvas.drawText("1", 82, 420, paintText);
+				
+				button = new Rect(109, 395, 159, 430);
+				canvas.drawRect(button, paintButton);
+				canvas.drawText("2", 134, 420, paintText);
+				
+				button = new Rect(161, 395, 211, 430);
+				canvas.drawRect(button, paintButton);
+				canvas.drawText("3", 186, 420, paintText);
+				
+				button = new Rect(213, 395, 263, 430);
+				canvas.drawRect(button, paintButton);
+				canvas.drawText("4", 238, 420, paintText);
+				
+				button = new Rect(265, 395, 315, 430);
+				canvas.drawRect(button, paintButton);
+				canvas.drawText("enter", 290, 420, paintText);
+				
+				button = new Rect(5, 435, 55, 470);
+				canvas.drawRect(button, paintButton);
+				canvas.drawText("5", 30, 460, paintText);
+				
+				button = new Rect(57, 435, 107, 470);
+				canvas.drawRect(button, paintButton);
+				canvas.drawText("6", 82, 460, paintText);
+				
+				button = new Rect(109, 435, 159, 470);
+				canvas.drawRect(button, paintButton);
+				canvas.drawText("7", 134, 460, paintText);
+				
+				button = new Rect(161, 435, 211, 470);
+				canvas.drawRect(button, paintButton);
+				canvas.drawText("8", 186, 460, paintText);
+				
+				button = new Rect(213, 435, 263, 470);
+				canvas.drawRect(button, paintButton);
+				canvas.drawText("9", 238, 460, paintText);
+				
+				button = new Rect(265, 435, 315, 470);
+				canvas.drawRect(button, paintButton);
+				canvas.drawText("clear", 290, 460, paintText);
 
 		// draw Progress Bar
 		Display display = ((WindowManager) mContext

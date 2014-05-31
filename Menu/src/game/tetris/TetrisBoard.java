@@ -3,7 +3,7 @@ import java.util.Random;
 
 public class TetrisBoard {
 	// width and height of board
-	public static final int WIDTH = 10;
+	public static final int WIDTH = 12;
 	public static final int HEIGHT = 24;
 	public static final int DISPLAYED_HEIGHT = 16;
 
