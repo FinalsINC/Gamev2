@@ -135,6 +135,11 @@ public class TetrisThread extends Thread {
 	static boolean mSoundEffect;
 	static SoundPool mSoundPool;
 	static int mSoundId;
+	
+	// Equations
+	HardEquations equationGen = new HardEquations();
+	Equation mEquation = null;
+	Equation mNextEquation = null;
 
 	/***
 	 * Default constructor for main thread.
@@ -560,6 +565,11 @@ public class TetrisThread extends Thread {
 		mPiece = temp;
 		mNextPiece.randomize();
 		mPiecePos = new Coord(5, 20);
+		
+		Equation tempEq = mNextEquation;
+		mNextEquation = mEquation;
+		mEquation = tempEq;
+		mNextEquation = equationGen.newEquation();
 
 		if (mBoard.checkCollision(mPiece.getCoords(mPiecePos))) {
 			endOfGameByLoss();
