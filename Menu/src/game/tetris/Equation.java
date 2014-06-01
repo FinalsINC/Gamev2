@@ -49,17 +49,17 @@ public class Equation {
 	}
 	
 	private String getEqString(int first, int second, int op) {
-	  String eq = "";
-		eq.concat(Integer.toString(first));
+	  StringBuilder eq = new StringBuilder();
+		eq.append(Integer.toString(first));
 		if(op==0)
-			eq.concat("+");
+			eq.append("+");
 		else if(op==1)
-			eq.concat("-");
+			eq.append("-");
 		else if(op==2)
-			eq.concat("*");
+			eq.append("*");
 		else
-			eq.concat("/");
-		eq.concat(Integer.toString(second));
-		return eq;
+			eq.append("/");
+		eq.append(Integer.toString(second));
+		return eq.toString();
 	}
 }
