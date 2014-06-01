@@ -2,6 +2,7 @@ package game.tetris;
 
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Random;
 
 import android.app.Activity;
 import android.content.Context;
@@ -141,6 +142,8 @@ public class TetrisThread extends Thread {
 	HardEquations equationGen = new HardEquations();
 	Equation mEquation = null;
 	Equation mNextEquation = null;
+	
+	Random rand = new Random(System.currentTimeMillis());
 
 	/***
 	 * Default constructor for main thread.
@@ -442,7 +445,9 @@ public class TetrisThread extends Thread {
 			if (currentTime >= (mLastFadeTime + 100)) {
 				if (mFadingStage == 0) {
 					mFadingLines = false;
-					mBoard.deleteLines(mFilledLines);
+					/*for (int i = mBoard.HEIGHT - 1; i >= 0; i--)
+						mFilledLines[i] = false;*/
+					//mBoard.deleteLines(mFilledLines);
 					newPiece();
 					mLastTime = currentTime;
 				} else {
@@ -567,7 +572,18 @@ public class TetrisThread extends Thread {
 		mNextPiece = mPiece;
 		mPiece = temp;
 		mNextPiece.randomize();
-		mPiecePos = new Coord(5, 20);
+		mPiecePos = new Coord(6, 18);
+		
+		int randy = rand.nextInt(3);
+		if(randy==1){
+			for(int i=0; i<4; i++){
+				moveLeft();
+			}
+		}else if(randy==2){
+			for(int i=0; i<4; i++){
+				moveRight();
+			}
+		}
 		
 		Equation tempEq = mNextEquation;
 		mNextEquation = mEquation;
@@ -855,15 +871,17 @@ public class TetrisThread extends Thread {
 							- (mCanvasHeight - mBlockSize
 									* TetrisBoard.DISPLAYED_HEIGHT) / 2 + 1;
 
-					if (mFadingLines && mFilledLines[y]) {
+					/*if (mFadingLines && mFilledLines[y]) {
 						if (mFadingStage == 7)
 							canvas.drawBitmap(mBlockBitmaps[block - 1], null,
 									r, null);
 						else if (mFadingStage > 0)
-							canvas.drawBitmap(
+							/*canvas.drawBitmap(
 									mFadeBitmaps[mFadingStage - 1][block - 1],
 									null, r, null);
-					} else
+							canvas.drawBitmap(mBlockBitmaps[block - 1], null,
+									r, null);
+					} else*/
 						canvas.drawBitmap(mBlockBitmaps[block - 1], null, r,
 								null);
 				}
@@ -1142,11 +1160,19 @@ public class TetrisThread extends Thread {
 						str.append("4");
 					
 					if(bnte.contains(X, Y)){
-						drop();
+						if(checkAnswer()){
+							mFadingLines = true;
+						}
+						else{
+							drop();
+						}
+						
+						for (int i = mBoard.HEIGHT - 1; i >= 0; i--)
+							mFilledLines[i] = false;
+						
 						while(str.length()>0){
 							str.setLength(str.length()-1);
 						}
-						
 					}
 						
 					if(bnt5.contains(X, Y))
@@ -1273,7 +1299,9 @@ public class TetrisThread extends Thread {
 	}
 	
 	public boolean checkAnswer() {
-		if(Integer.parseInt(str.toString()) == mEquation.answer)
+		if(str.length()<=0)
+			return false;
+		else if(Integer.parseInt(str.toString()) == mEquation.answer)
 			return true;
 		else
 			return false;
