@@ -3,7 +3,7 @@
   
     <string name="hello">Hello World, TetrisAndroid!</string>
     
-    <string name="app_name">Tetronomis</string>
+    <string name="app_name">Arithmattack</string>
     
 	<!-- Main Menu -->
 	<string name="game_mode">Game Modes</string>
