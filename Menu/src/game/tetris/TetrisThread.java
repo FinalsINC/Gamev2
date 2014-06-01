@@ -576,6 +576,10 @@ public class TetrisThread extends Thread {
 			endOfGameByLoss();
 		} else
 			calcDropPos();
+		
+		while(str.length()>0){
+			str.setLength(str.length()-1);
+		}
 	}
 
 	// if there was a saved game reStorePiece is called instead of newPiece to
@@ -1133,8 +1137,13 @@ public class TetrisThread extends Thread {
 					if(bnt4.contains(X, Y))
 						str.append("4");
 					
-					if(bnte.contains(X, Y))
-						//Perform enter action
+					if(bnte.contains(X, Y)){
+						drop();
+						while(str.length()>0){
+							str.setLength(str.length()-1);
+						}
+						
+					}
 						
 					if(bnt5.contains(X, Y))
 						str.append("5");
@@ -1158,7 +1167,7 @@ public class TetrisThread extends Thread {
 
 				case MotionEvent.ACTION_UP: // user actions
 
-					if (mXDown < (mCanvasWidth / 2) - mBlockSize * 5) // coordinates
+					//if (mXDown < (mCanvasWidth / 2) - mBlockSize * 5) // coordinates
 																		// of
 																		// the
 						//Need to Display string											// left
@@ -1172,8 +1181,8 @@ public class TetrisThread extends Thread {
 																		// in
 																		// landscape
 																		// aswell
-						moveLeft();
-					else if (mXDown > (mCanvasWidth / 2) + mBlockSize * 5) // //coordinates
+						//moveLeft();
+					//else if (mXDown > (mCanvasWidth / 2) + mBlockSize * 5) // //coordinates
 																			// of
 																			// the
 																			// right
@@ -1187,13 +1196,13 @@ public class TetrisThread extends Thread {
 																			// in
 																			// landscape
 																			// aswell
-						moveRight();
-					else if (mYDown > mCanvasHeight - mBlockSize * 6) // used to
+						//moveRight();
+					//else if (mYDown > mCanvasHeight - mBlockSize * 6) // used to
 																		// drop
 																		// block,
-						drop();
-					else
-						rotate();
+						//drop();
+					//else
+						//rotate();
 					break;
 				}
 			} else {
@@ -1257,6 +1266,13 @@ public class TetrisThread extends Thread {
 		} else if (lines == 4) {
 			mScores = mScores + 10 * lines + 15;
 		}
+	}
+	
+	public boolean checkAnswer() {
+		if(Integer.parseInt(str.toString()) == mEquation.answer)
+			return true;
+		else
+			return false;
 	}
 
 	public String getSaveGameString() {

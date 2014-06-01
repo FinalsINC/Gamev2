@@ -5,12 +5,27 @@ public class Equation {
 	int secondValue;
 	int operation;
 	String equationString;
+	int answer;
 
 	public Equation(int first, int second, int op) {
 		firstValue = first;
 		secondValue = second;
 		operation = op;
 		equationString = getEqString(first,second,op);
+		switch(op){
+		case 0:
+			answer = first + second;
+			break;
+		case 1:
+			answer = first - second;
+			break;
+		case 2:
+			answer = first * second;
+			break;
+		case 3:
+			answer = first / second;
+			break;
+		}
 	}
 
 	public int getFirstValue() {
@@ -29,18 +44,22 @@ public class Equation {
 	  return equationString;
 	}
 	
+	public int getAnswer() {
+		return answer;
+	}
+	
 	private String getEqString(int first, int second, int op) {
-	  String eq = "";
-		eq.concat(Integer.toString(first));
+	  StringBuilder eq = new StringBuilder();
+		eq.append(Integer.toString(first));
 		if(op==0)
-			eq.concat("+");
+			eq.append("+");
 		else if(op==1)
-			eq.concat("-");
+			eq.append("-");
 		else if(op==2)
-			eq.concat("*");
+			eq.append("*");
 		else
-			eq.concat("/");
-		eq.concat(Integer.toString(second));
-		return eq;
+			eq.append("/");
+		eq.append(Integer.toString(second));
+		return eq.toString();
 	}
 }

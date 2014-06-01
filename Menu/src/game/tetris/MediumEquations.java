@@ -9,7 +9,7 @@ public class MediumEquations implements EquationGenerator {
 		Random rand = new Random();
 		do {
 			first = rand.nextInt(100);
-			second = rand.nextInt(100);
+			second = rand.nextInt(10);
 			op = rand.nextInt(2) + 2;
 		} while (checkValidity(first, second, op) == false);
 		return new Equation(first, second, op);
