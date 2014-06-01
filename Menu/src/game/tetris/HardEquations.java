@@ -10,7 +10,7 @@ public class HardEquations implements EquationGenerator {
 		do {
 			first = rand.nextInt(90)+10;
 			second = rand.nextInt(10);
-			op = rand.nextInt(2);
+			op = rand.nextInt(4);
 		} while (checkValidity(first, second, op) == false);
 		return new Equation(first, second, op);
 	}
