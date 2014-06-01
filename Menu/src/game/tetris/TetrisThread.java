@@ -159,7 +159,9 @@ public class TetrisThread extends Thread {
 		mBoard = new TetrisBoard();
 		mPiece = new TetrisPiece();
 		mNextPiece = new TetrisPiece();
-
+		mEquation = equationGen.newEquation();
+		mNextEquation = equationGen.newEquation();
+		
 		highScores = new HighScoreData(mContext); // Initialize with Context
 		mHighScore = highScores.getHighestScore();
 
@@ -759,8 +761,11 @@ public class TetrisThread extends Thread {
 	 */
 	private void doDraw(Canvas canvas) {
 		Paint paintEqTxt = new Paint();
-		paintEqTxt.setColor(Color.BLACK);
-		paintEqTxt.setTextSize(14);
+		paintEqTxt.setColor(Color.WHITE);
+		
+		
+		//paintEqTxt.set
+		paintEqTxt.setTextSize(13);
 		
 		Coord[] pieceCoords = mPiece.getCoords(mPiecePos);
 		Coord[] dropCoords = mPiece.getCoords(mDropPos);
@@ -801,7 +806,7 @@ public class TetrisThread extends Thread {
 			}
 
 			// draw piece
-			String Eq = "5+32";
+				
 			for (int i = 0; i < 4; i++) {
 				if (pieceCoords[i].y < TetrisBoard.DISPLAYED_HEIGHT) {
 					int screenX = pieceCoords[i].x * mBlockSize;
@@ -821,10 +826,9 @@ public class TetrisThread extends Thread {
 							- (mCanvasHeight - mBlockSize
 									* TetrisBoard.DISPLAYED_HEIGHT) / 2 + 1;
 					canvas.drawBitmap(mBlockBitmaps[shapeId - 1], null, r, null);
-					//canvas.drawText(mEquation.equationString, r.left, r.bottom, paintEqTxt);
-					//canvas.drawText(Character.toString(i), r.left, r.bottom, paintEqTxt );
 				}
-				canvas.drawText(Character.toString(Eq.charAt(Eq.length()-1-i)), r.left, r.bottom, paintEqTxt );
+			
+				canvas.drawText(Character.toString(mEquation.equationString.charAt(mEquation.equationString.length()-1-i)), r.left+3, r.bottom-3, paintEqTxt );
 			}
 			
 		}

@@ -9,10 +9,13 @@ import android.graphics.Color;
 public class TetrisPiece {
 	private static final int[][] lightColorsRGB = {
 		//{0,   255, 255}, // cyan
-		{4,   206, 220},  // cyan
+		{232,   120, 192}, // purple replaces gyan below
+		//{4,   206, 220},  // cyan
 		{0,     0, 255}, // blue
-		{255, 213,   4},// orange
-		{255, 255,   0}, // yellow
+		{92,   223,   59}, // green to replace the orange below
+		//{255, 213,   4},// orange
+		{0,     0, 255}, //Blue to replace the yellow below
+		//{255, 255,   0}, // yellow
 		{92,   223,   59}, // green
 		{232,   120, 192}, // purple
 		{255,   104,   65}  // red
