@@ -6,7 +6,7 @@ public class HardEquations implements EquationGenerator {
 
 	public Equation newEquation() {
 		int first = 0, second = 0, op = 0;
-		Random rand = new Random();
+		Random rand = new Random(System.currentTimeMillis());
 		do {
 			first = rand.nextInt(90)+10;
 			second = rand.nextInt(10);
