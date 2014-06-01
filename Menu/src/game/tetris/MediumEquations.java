@@ -8,8 +8,8 @@ public class MediumEquations implements EquationGenerator {
 		int first = 0, second = 0, op = 0;
 		Random rand = new Random();
 		do {
-			first = rand.nextInt(100);
-			second = rand.nextInt(10);
+			first = rand.nextInt(90)+10;
+			second = rand.nextInt(9)+1;
 			op = rand.nextInt(2) + 2;
 		} while (checkValidity(first, second, op) == false);
 		return new Equation(first, second, op);
