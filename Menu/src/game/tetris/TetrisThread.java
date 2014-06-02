@@ -144,6 +144,9 @@ public class TetrisThread extends Thread {
 	Equation mNextEquation = null;
 	
 	Random rand = new Random(System.currentTimeMillis());
+	
+	private int combo;
+	private int nextLevel;
 
 	/***
 	 * Default constructor for main thread.
@@ -157,6 +160,8 @@ public class TetrisThread extends Thread {
 		tempRotation = -1;
 		first_level_display = false;
 		mLevel = 1;
+		combo = 0;
+		nextLevel = 100;
 		mSurfaceHolder = holder;
 		mContext = context;
 		mBoard = new TetrisBoard();
@@ -448,6 +453,7 @@ public class TetrisThread extends Thread {
 					/*for (int i = mBoard.HEIGHT - 1; i >= 0; i--)
 						mFilledLines[i] = false;*/
 					//mBoard.deleteLines(mFilledLines);
+					updateScores(0);
 					newPiece();
 					mLastTime = currentTime;
 				} else {
@@ -889,7 +895,7 @@ public class TetrisThread extends Thread {
 
 		// draw play text
 		Paint paintText = new Paint();
-		paintText.setColor(Color.WHITE);
+		paintText.setColor(Color.BLACK);
 		paintText.setTextAlign(Paint.Align.CENTER);
 		paintText.setTypeface(Kooky);
 		paintText.setAntiAlias(true);
@@ -899,23 +905,26 @@ public class TetrisThread extends Thread {
 		pos[0] = (mCanvasWidth - (mBlockSize * 10)) / 2 + mBlockSize * 11;
 		pos[1] = mBlockSize * 12;
 		pos[2] = mBlockSize * 11;
-		/*
-		 * //draw Level canvas.drawText(Integer.toString(mLevel),
-		 * mCanvasWidth-(mCanvasWidth-mBlockSize*TetrisBoard.WIDTH)/4,
-		 * pos[1]-5*mBlockSize, paintText);
-		 * 
-		 * //draw Lines canvas.drawText(Integer.toString(mTotalLines),
-		 * mCanvasWidth-(mCanvasWidth-mBlockSize*TetrisBoard.WIDTH)/4,
-		 * pos[1]-8*mBlockSize, paintText);
-		 * 
-		 * //draw Score canvas.drawText(Integer.toString(mScores),
-		 * (mCanvasWidth-mBlockSize*TetrisBoard.WIDTH)/4, pos[1]-8*mBlockSize,
-		 * paintText);
-		 * 
-		 * //draw High Scores
-		 * canvas.drawText(Integer.toString(mHighScore),(mCanvasWidth
-		 * -mBlockSize*TetrisBoard.WIDTH)/4, pos[1]-4*mBlockSize, paintText);
-		 */
+		
+		//draw Level 
+		canvas.drawText(Integer.toString(mLevel),
+		mCanvasWidth-(mCanvasWidth-mBlockSize*TetrisBoard.WIDTH)/4,
+		pos[1]-5*mBlockSize, paintText);
+		 
+		/*//draw Lines 
+		canvas.drawText(Integer.toString(mTotalLines),
+		mCanvasWidth-(mCanvasWidth-mBlockSize*TetrisBoard.WIDTH)/4,
+		pos[1]-8*mBlockSize, paintText);*/
+		 
+		//draw Score 
+		canvas.drawText(Integer.toString(mScores),
+		(mCanvasWidth-mBlockSize*TetrisBoard.WIDTH)/4, pos[1]-8*mBlockSize,
+		paintText);
+		 
+		//draw High Scores
+		canvas.drawText(Integer.toString(mHighScore),(mCanvasWidth
+		-mBlockSize*TetrisBoard.WIDTH)/4, pos[1]-4*mBlockSize, paintText);
+		 
 		
 		//draw buttons
 				Paint paintButton = new Paint();
@@ -1162,9 +1171,11 @@ public class TetrisThread extends Thread {
 					if(bnte.contains(X, Y)){
 						if(checkAnswer()){
 							mFadingLines = true;
+							combo++;
 						}
 						else{
 							drop();
+							combo = 0;
 						}
 						
 						for (int i = mBoard.HEIGHT - 1; i >= 0; i--)
@@ -1282,7 +1293,7 @@ public class TetrisThread extends Thread {
 		mTotalLines = mTotalLines + lines;
 
 		// checks to see if level needs to be incremented
-		if (mTotalLines >= (mLevel * LEVEL_UP_LINES)) {
+		/*if (mTotalLines >= (mLevel * LEVEL_UP_LINES)) {
 			mLevel++;
 			showLevelUp.sendEmptyMessage(0);
 		}
@@ -1295,6 +1306,14 @@ public class TetrisThread extends Thread {
 			mScores = mScores + 10 * lines + 10;
 		} else if (lines == 4) {
 			mScores = mScores + 10 * lines + 15;
+		}*/
+		
+		mScores = mScores + 10 * combo;
+		
+		if(mScores >= nextLevel){
+			mLevel++;
+			nextLevel += 100;
+			showLevelUp.sendEmptyMessage(0);
 		}
 	}
 	
