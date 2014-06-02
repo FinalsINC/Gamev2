@@ -463,6 +463,7 @@ public class TetrisThread extends Thread {
 			}
 		} else if (currentTime >= (mLastTime + moveDelay)) {
 			mPiecePos.y--;
+			combo = 0;
 
 			if (mBoard.checkCollision(mPiece.getCoords(mPiecePos))) {
 				mPiecePos.y++;
