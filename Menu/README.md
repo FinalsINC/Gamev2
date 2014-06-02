@@ -1,4 +1,4 @@
-tetris
-======
+Arithmattack
+====
 
-Tetris game for Android
+Arithmattack game for Android
