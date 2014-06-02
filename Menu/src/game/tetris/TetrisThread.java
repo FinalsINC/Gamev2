@@ -908,21 +908,27 @@ public class TetrisThread extends Thread {
 		pos[2] = mBlockSize * 11;
 		
 		//draw Level 
+		canvas.drawText("Level ",mCanvasWidth-(mCanvasWidth-mBlockSize*TetrisBoard.WIDTH)/4, pos[1]-7*mBlockSize, paintText);
+		
 		canvas.drawText(Integer.toString(mLevel),
 		mCanvasWidth-(mCanvasWidth-mBlockSize*TetrisBoard.WIDTH)/4,
-		pos[1]-5*mBlockSize, paintText);
+		pos[1]-6*mBlockSize, paintText);
 		 
 		/*//draw Lines 
 		canvas.drawText(Integer.toString(mTotalLines),
 		mCanvasWidth-(mCanvasWidth-mBlockSize*TetrisBoard.WIDTH)/4,
 		pos[1]-8*mBlockSize, paintText);*/
 		 
-		//draw Score 
+		//draw Score
+		canvas.drawText("Score ",(mCanvasWidth
+				-mBlockSize*TetrisBoard.WIDTH)/4, pos[1]-9*mBlockSize, paintText);
 		canvas.drawText(Integer.toString(mScores),
 		(mCanvasWidth-mBlockSize*TetrisBoard.WIDTH)/4, pos[1]-8*mBlockSize,
 		paintText);
 		 
 		//draw High Scores
+		canvas.drawText("High Score ",(mCanvasWidth
+				-mBlockSize*TetrisBoard.WIDTH)/3+5, pos[1]-5*mBlockSize, paintText);
 		canvas.drawText(Integer.toString(mHighScore),(mCanvasWidth
 		-mBlockSize*TetrisBoard.WIDTH)/4, pos[1]-4*mBlockSize, paintText);
 		 
